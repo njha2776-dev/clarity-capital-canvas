@@ -2,41 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Professional CA & Finance Consultancy Design System */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @layer base {
   :root {
+    /* Primary Brand Colors - Professional Finance Theme */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 210 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Professional Blue Primary */
+    --primary: 210 100% 28%;
+    --primary-foreground: 0 0% 98%;
+    --primary-light: 210 100% 35%;
+    --primary-dark: 210 100% 20%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Teal Accent */
+    --secondary: 180 84% 45%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-light: 180 84% 55%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Gold Accent for Trust */
+    --accent: 45 93% 58%;
+    --accent-foreground: 210 15% 15%;
+    --accent-light: 45 93% 68%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Neutral Grays */
+    --muted: 210 40% 96%;
+    --muted-foreground: 210 15% 45%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 20% 92%;
+    --input: 210 20% 95%;
+    --ring: 210 100% 28%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Custom Financial Theme Colors */
+    --finance-gradient-start: 210 100% 28%;
+    --finance-gradient-end: 180 84% 45%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 98%;
+    
+    /* Shadows */
+    --shadow-soft: 210 40% 8%;
+    --shadow-medium: 210 40% 15%;
+    
+    /* Animation Variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +123,103 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+}
+
+@layer components {
+  /* Professional Button Variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-secondary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
+  }
+
+  .btn-outline-hero {
+    @apply border-2 border-primary text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-accent-foreground px-6 py-3 rounded-lg font-medium hover:bg-accent-light transition-all duration-300;
+  }
+
+  /* Finance Gradients */
+  .gradient-finance {
+    @apply bg-gradient-to-br from-primary via-secondary to-primary;
+  }
+
+  .gradient-finance-subtle {
+    @apply bg-gradient-to-r from-primary/5 to-secondary/5;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  /* Animation Classes */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+
+  /* Service Cards */
+  .service-card {
+    @apply bg-card rounded-xl p-6 shadow-md hover:shadow-xl border border-border/50 hover:border-primary/20 transition-all duration-300 hover:-translate-y-2;
+  }
+
+  /* Professional Shadows */
+  .shadow-finance {
+    box-shadow: 0 10px 30px -10px hsl(var(--shadow-soft) / 0.3);
+  }
+
+  .shadow-finance-hover {
+    box-shadow: 0 20px 40px -10px hsl(var(--shadow-medium) / 0.4);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
